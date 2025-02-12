@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwollenHipppo - Login</title>  <!-- This is what shows up in thee tab on the web browser -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <form class="card col-12 col-md-5 col-lg-4" id="frmLogin">
+            <div class="card-body"> <!-- Is a division of code -->
+                <h1 class="text-center mb-0 text-primary">SwollenHippo</h1>
+                <div class="d-flex justify-content-center">
+                    <img src="images/" alt="Abstract People Image" style="max-width: 80%;">
+                </div>
+                <h3 class="text-center">Administrator Login</h3>
+                <input id="txtUsername" class="form-control mt-4" type="email" placeholder="johndoe@email.com" aria-label="email">
+                <input id="txtPassword" class="form-control mt-2" type="password" placeholder="password" aria-label="password">
+                <select id="cbolocation" class="form-control mt-4 mb-2" placeholder="Choose Your Location" aria-label="Choose Your Location">
+                    <option value="nothing">Choose your Location</option>
+                    <option value="home">Home</option>
+                    <option value="remote">Remote</option>
+                </select>
+                <hr />
+                <button type="button" class="btn btn-primary col-12 mt-2" id="btnlogin">Log In</button>
+                <button class="btn btn-link col-12 mt-0" type="button" id="btnSwapLogin">Need an account, register here</button>
+            </div>
+        </form>
+        
+        <form class="card col-12 col-md-5 col-lg-4" id="frmRegister" style="display:none;">
+            <div class="card-body"> <!-- Is a division of code -->
+                <h1 class="text-center mb-0 text-primary">SwollenHippo</h1>
+                <div class="d-flex justify-content-center">
+                    <img src="images/" alt="Abstract People Image" style="max-width: 80%;">
+                </div>
+                <h3 class="text-center">Administrator Registration</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Relationship</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Peter</td>
+                                <td>Griffin</td>
+                                <td>father</td>
+                            </tr>
+                            <tr>
+                                <td>Stuart</td>
+                                <td>Griffin</td>
+                                <td>son</td>
+                            </tr>
+                        </tbody>
+                    </table>
+               <hr />
+                <button type="button" class="btn btn-primary col-12 mt-2" id="btnRegistration">Log In</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // vanilla js with query selector
+        // document.querySelector("#btnlogin").addEventListener("click",(e) => {
+        //     alert("Test");
+        // })
+        // // vanilla js with get element by id
+        // document.getElementById(btnlogin).addEventListener("click",(e) => {
+        //     alert("Test");
+        // })
+        //vanilla js
+        document.querySelector("#btnlogin").addEventListener("click",(e) => {
+            const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+            
+            
+            let strUsername = document.querySelector("#txtUsername").value
+            const strPassword = $("#txtPassword").val()
+            strUsername = strUsername.toLowerCase()
+            let blnError = false
+            let strMessage = ""
+
+            if(!regEmail.test(strUsername)){
+                blnError = true
+                strMessage += '<p class="mb-0 mt-0">Username must be an email address</p>'
+            }
+
+            // if(strUsername.trim().length < 6 || !strUsername.includes('@') || !strUsername.includes('.')){
+            //     blnError = true
+            //     strMessage += '<p class="mb-0 mt-0">Username must be an email address</p>'
+            // }
+
+            if(strPassword.length < 1){
+                blnError = true
+                strMessage += '<p class="mb-0 mt-0">Password Cannot Be Blank</P>'
+            }
+
+            Swal.fire({
+                title: "Oh no, you have an error!",
+                html: strMessage,
+                icon: "error"
+            });
+        })
+
+
+        // jquerry version
+        // $("#btnlogin").on("click",function(){
+        //     var strTest = "This is a test";
+        //     // var is for global variable
+            
+        //     // this variable is only available inside the function (scoped)
+        //     //let strTest2 = "this is a test as well"
+
+        //     // const strUsername = $('#txtUsername').val()
+        //     // console.log(strUsername) //good for debugging (find in inspect menu)
+
+        //     // const strPassword = $('#txtPassword').val()
+        //     // console.log(strPassword)
+        // })
+
+        // jQuery handler for btnSwapLogin
+        $('#btnSwapLogin').on('click',function(){
+            $('#frmLogin').slideUp(function(){
+                $('#frmRegister').slideDown()
+            })
+        })
+    </script>
+</body> 
+</html>
+<!--padding makes elements take up more space margins pushes things away-->

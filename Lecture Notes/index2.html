@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Services</title>
+</head>
+<body>
+    <div id="divDogs">
+
+
+
+
+    </div>
+    <form id="frmDogs">
+        <select id="selDogs" aria-label="Select a Dog Breed">
+            
+        </select>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+    // Vailla JS example with fetch and promises
+        // fetch("https://swollenhippo.com/dogs.php?APIKey=75Barking212!")// links to array of json objects
+        // .then(objResponse => objResponse.json())
+        // .then(objData => {
+        //     console.log(objData[0].Breed);
+        // })   
+
+
+        // This is a jQuery example of a get request taking in JSON
+        // $.getJSON("https://swollenhippo.com/dogs.php?APIKey=75Barking212!")
+        // .then(objData =>
+        //     console.log(objData.length)
+        // )
+
+ // Vanilla JS async await
+        // async function getDogs(){
+        //     try{
+        //         const objResponse = await fetch("https://swollenhippo.com/dogs.php?APIKey=75Barking212!")
+        //         if(!objResponse.ok){
+        //             throw new Error(`HTTP Error Status: ${objResponse.status}`)
+        //         }
+        //         const objData = await objResponse.json()
+        //         console.log(objData.length)
+        //     } catch (objError) {
+        //         console.log(`Error fetching objData`, objError)
+        //     }
+        // }
+        // getDogs()
+
+
+
+
+
+
+// This is the JQuery version of this
+        $(document).on('click','#btnTest',function(){ //binds this event to any button with id of #btnTest
+                alert('Test');
+        })
+        $.getJSON("https://swollenhippo.com/dogs.php?APIKey=75Barking212!", function(objData){ 
+            //console.log(objData)
+
+        //     // Older, more declaration way of performing a forEach
+        //     let arrDogs = [];
+        //     let strHTML = '<ul>'
+        //     objData.forEach(function(objDog){
+        //     //console.log(objDog.Breed)  //note objDog references the current object we are on in the array
+        //         arrDogs.push(objDog.Breed)
+        //         $('#divDogs').append(`<p>${objDog.Breed}</p>`)
+            
+        //         strHtml += `<option>${objDog.breed}</option>`
+        //     })
+        //    strHTML += '</ul>'
+    
+        //     $('select').append(strHTML)
+        //    // console.log(arrDogs)
+
+
+            objData.forEach(function(objDog){
+                $('#selDogs').append(`<option value="${objDog.Breed}">${objDog.Breed}</option>`)
+            })
+            $('#frmDogs').append('<button class="btn btn-primary" id="btnTest" type="button">Test Me</button>')
+
+            // $('#btnTest').on('click',function(){
+            //     alert('Test');
+            // })
+        })
+
+
+        
+
+    </script>
+</body>
+</html>
