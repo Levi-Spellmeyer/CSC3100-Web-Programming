@@ -7,10 +7,7 @@
 </head>
 <body>
     <div id="divDogs">
-
-
-
-
+        
     </div>
     <form id="frmDogs">
         <select id="selDogs" aria-label="Select a Dog Breed">
@@ -48,47 +45,41 @@
         // }
         // getDogs()
 
-
-
-
-
-
 // This is the JQuery version of this
         $(document).on('click','#btnTest',function(){ //binds this event to any button with id of #btnTest
                 alert('Test');
         })
+
         $.getJSON("https://swollenhippo.com/dogs.php?APIKey=75Barking212!", function(objData){ 
             //console.log(objData)
+            //let objFromDogs = document.querySelector('#frmDogs')
 
-        //     // Older, more declaration way of performing a forEach
-        //     let arrDogs = [];
-        //     let strHTML = '<ul>'
-        //     objData.forEach(function(objDog){
-        //     //console.log(objDog.Breed)  //note objDog references the current object we are on in the array
-        //         arrDogs.push(objDog.Breed)
-        //         $('#divDogs').append(`<p>${objDog.Breed}</p>`)
-            
-        //         strHtml += `<option>${objDog.breed}</option>`
-        //     })
-        //    strHTML += '</ul>'
-    
+            let arrDogs = [];
+            let strHTML = '<ul>'
+            objData.forEach(function(objDog){
+            //console.log(objDog.Breed)  //note objDog references the current object we are on in the array
+                arrDogs.push(objDog.Breed)
+                //$('#divDogs').append(`<p>${objDog.Breed}</p>`)
+                strHTML += `<li>${objDog.Breed}</li>`
+            })
+            strHTML += '</ul>'
+            document.querySelector('#frmDogs').innerHTML += strHTML
         //     $('select').append(strHTML)
         //    // console.log(arrDogs)
 
-
             objData.forEach(function(objDog){
-                $('#selDogs').append(`<option value="${objDog.Breed}">${objDog.Breed}</option>`)
+                //$('#selDogs').append(`<option value="${objDog.Breed}">${objDog.Breed}</option>`)
+                document.querySelector('#selDogs').innerHTML += `<option value="${objDog.Breed}">${objDog.Breed}</option>`
+    
             })
-            $('#frmDogs').append('<button class="btn btn-primary" id="btnTest" type="button">Test Me</button>')
+           // $('#frmDogs').append('<button class="btn btn-primary" id="btnTest" type="button">Test Me</button>')
 
-            // $('#btnTest').on('click',function(){
-            //     alert('Test');
-            // })
         })
 
 
-        
-
+        // localStorage.setItem('LocalItem', 'I hope I perist')
+        // sessionStorage.setItem("This is SessoinStorage", '2025-02-14')
+        // document.cookie = "myfirstcookie=JohnDoe; mysecondCookie=JaneDoelling;"
     </script>
 </body>
 </html>
